@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+body {
+  background-color: #ced3df;
+  text-align: center;
+}
+
+.list {
+  width: 400px;
+  margin: auto;
+  margin-top: 24px;
+  /* 마진확인 */
+  background-color: #f1f0f7;
+  border-radius: 20px;
+}
+
+.header {
+  height: 48px;
+  padding: 10px;
+  background: rgb(51, 47, 115);
+  background: linear-gradient(
+    90deg,
+    rgba(51, 47, 115, 1) 0%,
+    rgba(156, 51, 157, 0.9243259803921569) 36%,
+    rgba(176, 227, 237, 1) 100%
+  );
+  border-radius: 20px 20px 0 0;
+  color: rgb(238, 234, 234);
+  font-size: 24px;
+  font-weight: semi-bold;
+}
+
+button {
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.items {
+  /* 임시로 픽셀로 늘려놓기 */
+  height: 500px;
+  /* 아이템이 많아지면 자동으로 스크롤바 생성 */
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 32px;
+}
+
+.item__delete {
+  transition: all 300ms ease-in;
+}
+.item__delete:hover {
+  color: red;
+  transform: scale(1.2);
+}
+
+.item__divider {
+  width: 90%;
+  height: 1px;
+  background-color: gray;
+  margin: auto;
+}
+
+.item__delete {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.footer {
+  background: rgb(51, 47, 115);
+  background: linear-gradient(
+    90deg,
+    rgba(51, 47, 115, 1) 0%,
+    rgba(156, 51, 157, 0.9243259803921569) 36%,
+    rgba(176, 227, 237, 1) 100%
+  );
+  border-radius: 0 0 20px 20px;
+  color: white;
+  padding: 0px;
+}
+
+.footer__input {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+}
+
+.footer__btn {
+  width: 48px;
+  height: 48px;
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  font-size: 28px;
+}
+
+.footer__btn:hover {
+  transform: scale(1.1);
+}
