@@ -13,18 +13,15 @@ function onAdd() {
 
     //1. 사용자가 입력한 텍스트를 받아오기
     const text = input.value;
-    if (text === ''){
+    if (text === '') {
         input.focus();
         return;
     }
 
-
     //2. 받아온 텍스트를 이용해서 새로운 아이템 만들기(텍스트 +, 삭제버튼)
     const item = createItem(text);
-    //3. items 컨테이너 안에 새로 만든 아이템을 추가한다 (API)
-
-    //3-1. 새로 추가된 아이템으로 스크롤링
-    item.scrollIntoView({block : 'center'})
+    //3. items 컨테이너 안에 새로 만든 아이템을 추가한다 (API) 3-1. 새로 추가된 아이템으로 스크롤링
+    item.scrollIntoView({block: 'center'})
 
     items.appendChild(item);
     //4. 인풋을 초기화하고 커서를 입력창에 표시한다.
@@ -32,35 +29,24 @@ function onAdd() {
     input.focus();
 }
 
+//리액트를 쓰면 일일이 작성할일이 없음
+
+
+let id = 0; //UUID
 function createItem(text) {
     const itemRow = document.createElement("li");
     itemRow.setAttribute('class', 'item__row')
-
-    const item = document.createElement("div");
-    item.setAttribute('class', 'item')
-
-    const name = document.createElement("span");
-    name.setAttribute('class', 'item__name')
-    name.innerText = text;
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.setAttribute('class', 'item__delete');
-    deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
-     
- deleteBtn.addEventListener(
-        'click',
-        () => {
-            items.removeChild(itemRow);
-        });
-
-    const itemDivider = document.createElement('div');
-    itemDivider.setAttribute('class', 'item__divider');
-
-    item.appendChild(name);
-    item.appendChild(deleteBtn);
-
-    itemRow.appendChild(item);
-    itemRow.appendChild(itemDivider);
+    itemRow.setAttribute('data-id', id)
+    itemRow.innerHTML = `
+                    <div class="item" data-id=${id}>
+                        <span class="item__name">${text}</span>
+                        <button class="item__delete" >
+                            <i class="fas fa-trash-alt" data-id=${id}></i>
+                        </button>
+                    </div>
+                    <div class="item__divider"></div>                
+                    `;
+                    id++;
     return itemRow;
 }
 
@@ -70,7 +56,15 @@ addBtn.addEventListener('click', () => {
 });
 
 input.addEventListener('keypress', event => {
-    if (event.key === 'Enter'){
+    if (event.key === 'Enter') {
         onAdd();
+    }
+})
+
+items.addEventListener('click', event =>{
+const id = event.target.dataset.id;
+    if(id){
+        const toBeDeleted = document.querySelector(`.item__row[data-id="${id}"]`)
+    toBeDeleted.remove();
     }
 })
